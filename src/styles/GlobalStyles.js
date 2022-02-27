@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
   --font-size-heading-s: 20px;
   --font-size-heading-xs: 16px;
   --font-size-body: 14px;
+  --font-size-body-mobile:12px;
 
 
   --letter-spacing-heading-l: 2.5px;
@@ -70,6 +71,17 @@ h1,h2 {
   justify-content: center;
   align-items: center;
   padding: 2.4rem;
+}
+
+#overlays{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  
 }
 
 

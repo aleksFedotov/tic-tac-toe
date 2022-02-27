@@ -1,14 +1,32 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '../../../test-utils';
 
 import Setup from '../Setup';
 
 describe('Setup component testing', () => {
+  const createComponent = (initialState) => {
+    const options = { preloadedState: initialState };
+    // render to the screen
+    return render(<Setup />, options);
+  };
+
   test('Render Setup component', () => {
-    render(<Setup />);
+    createComponent({
+      setup: {
+        firstPlayerChoice: 'x',
+        gameMode: '',
+        gameIsRunning: false,
+      },
+    });
   });
 
   test('X is default choice for mark', () => {
-    render(<Setup />);
+    createComponent({
+      setup: {
+        firstPlayerChoice: 'x',
+        gameMode: '',
+        gameIsRunning: false,
+      },
+    });
     const markX = screen.getByTitle('x mark');
     const markO = screen.getByTitle('o mark');
     expect(markX).toHaveAttribute('aria-checked', 'true');
@@ -16,7 +34,13 @@ describe('Setup component testing', () => {
   });
 
   test('Changing selected mark to O after pressing button', () => {
-    render(<Setup />);
+    createComponent({
+      setup: {
+        firstPlayerChoice: 'x',
+        gameMode: '',
+        gameIsRunning: false,
+      },
+    });
     const markX = screen.getByTitle('x mark');
     const markO = screen.getByTitle('o mark');
     expect(markX).toHaveAttribute('aria-checked', 'true');

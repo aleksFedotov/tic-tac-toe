@@ -3,8 +3,12 @@ import styled from 'styled-components';
 export const SetupWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 48rem;
+  max-width: 46rem;
   width: 100%;
+
+  @media (max-width: 600px) {
+    max-width: 32.8rem;
+  }
 `;
 
 export const LogoWrapper = styled.div`
@@ -99,6 +103,7 @@ export const ModeButton = styled.button`
   text-transform: uppercase;
   font-size: var(--font-size-heading-s);
   font-weight: var(--font-weight-heading);
+  letter-spacing: var(--letter-spacing-heading-xs);
   color: var(--color-dark-navy);
   padding: 1.7rem 1rem;
   margin-bottom: 2rem;
@@ -115,5 +120,9 @@ export const ModeButton = styled.button`
     transform: translateY(0.5rem);
     box-shadow: 0px 4px
       ${(props) => (props.mode === 'pvp' ? '#118C87' : '#CC8B13')};
+  }
+
+  @media (max-width: 600px) {
+    font-size: var(--font-size-heading-xs);
   }
 `;

@@ -4,9 +4,8 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.9rem;
+  gap: 2rem;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const TurnDisplay = styled.div`
@@ -17,9 +16,10 @@ export const TurnDisplay = styled.div`
   box-shadow: 0px 4px var(--box-shadow-color);
   font-size: var(--font-size-heading-xs);
   font-weight: var(--font-weight-heading);
+  letter-spacing: var(--letter-spacing-body);
   color: var(--color-silver);
   text-transform: uppercase;
-  padding: 1.3rem 1rem 1.5rem;
+  padding: 1.3rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,8 +28,29 @@ export const TurnDisplay = styled.div`
     width: 2rem;
     height: 2rem;
     margin-right: 1.2rem;
+    animation: scaleIn 0.5s ease;
     path {
       fill: var(--color-silver);
+    }
+  }
+
+  @media (max-width: 600px) {
+    font-size: var(--font-size-body);
+    padding: 1rem;
+
+    .markDisplay {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0);
+    }
+
+    100% {
+      transform: scale(1);
     }
   }
 `;
@@ -46,6 +67,11 @@ export const RestartBtn = styled.button`
   box-shadow: 0px 4px #6b8997;
   border-radius: 1rem;
   justify-self: end;
+
+  @media (max-width: 600px) {
+    width: 4rem;
+    height: 4rem;
+  }
 
   svg {
     transition: transform 150ms ease-in;
