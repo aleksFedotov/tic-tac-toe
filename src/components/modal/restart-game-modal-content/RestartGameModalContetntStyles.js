@@ -6,6 +6,11 @@ export const RestartHeader = styled.h2`
   font-weight: var(--font-weight-heading);
   color: var(--color-silver);
   margin-bottom: 3rem;
+
+  @media (max-width: 600px) {
+    font-size: var(--font-size-heading-m);
+    letter-spacing: var(-letter-spacing-heading-m);
+  }
 `;
 
 export const ButtonWrapper = styled.div`

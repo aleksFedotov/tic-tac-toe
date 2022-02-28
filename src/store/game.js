@@ -1,15 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { setupActions } from './setup';
+
 const initialState = {
   turn: 'x',
-  board: ['', '', '', '', '', '', '', '', ''],
+  currentBoard: [null, null, null, null, null, null, null, null, null],
   score: {
     o: 0,
     ties: 0,
     x: 0,
   },
   isModalOpened: false,
-  winner: '',
+  winner: null,
 };
 
 const gameSlice = createSlice({
@@ -24,19 +26,62 @@ const gameSlice = createSlice({
       }
     },
     updateBoard(state, action) {
-      state.board[action.payload.index] = action.payload.turn;
+      state.currentBoard[action.payload.index] = action.payload.turn;
+    },
+
+    setWinner(state, action) {
+      state.winner = action.payload;
     },
 
     cleanBoard(state) {
-      state.board = ['', '', '', '', '', '', '', '', ''];
+      state.currentBoard = [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+      ];
       state.turn = 'x';
+      state.winner = null;
     },
 
     toggleModal(state) {
       state.isModalOpened = !state.isModalOpened;
     },
+    updateScore(state, action) {
+      state.score[action.payload] += 1;
+    },
+    cleanScore(state) {
+      state.score = {
+        o: 0,
+        ties: 0,
+        x: 0,
+      };
+      state.winner = null;
+    },
   },
 });
+
+export const quitGame = () => {
+  return (dispatch) => {
+    dispatch(gameActions.toggleModal());
+    dispatch(setupActions.resetGame());
+    dispatch(gameActions.cleanBoard());
+    dispatch(gameActions.cleanScore());
+  };
+};
+
+export const restartGame = () => {
+  return (dispatch) => {
+    dispatch(gameActions.toggleModal());
+    dispatch(setupActions.resetGame());
+    dispatch(gameActions.cleanBoard());
+  };
+};
 
 export const gameActions = gameSlice.actions;
 

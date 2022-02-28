@@ -23,8 +23,19 @@ const GSHeader = () => {
     dispatch(gameActions.toggleModal());
   };
 
+  const headerVariants = {
+    initial: { opacity: 0, y: -200 },
+    animate: { opacity: 1, y: 0, transition: { duration: 1 } },
+    exit: { opacity: 0, y: -200, transition: { duration: 1 } },
+  };
+
   return (
-    <HeaderWrapper>
+    <HeaderWrapper
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={headerVariants}
+    >
       <Logo />
       <TurnDisplay>
         {turn === 'x' ? (

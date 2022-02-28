@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const HeaderWrapper = styled.div`
+import { motion } from 'framer-motion';
+
+export const HeaderWrapper = styled(motion.div)`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

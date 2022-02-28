@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const SetupWrapper = styled.div`
+import { motion } from 'framer-motion';
+
+export const SetupWrapper = styled.section`
   display: flex;
   flex-direction: column;
   max-width: 46rem;
@@ -11,12 +13,12 @@ export const SetupWrapper = styled.div`
   }
 `;
 
-export const LogoWrapper = styled.div`
+export const LogoWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
 `;
 
-export const MarkPicker = styled.div`
+export const MarkPicker = styled(motion.div)`
   padding: 2.4rem;
   background-color: var(--color-semi-dark-navy);
   border-radius: 2rem;
@@ -87,7 +89,7 @@ export const Info = styled.p`
   opacity: 0.5;
 `;
 
-export const ModeButton = styled.button`
+export const ModeButton = styled(motion.button)`
   cursor: pointer;
   width: 100%;
   border-radius: 1.5rem;

@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import { createPortal } from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { gameActions } from '../../store/game';
+import { useSelector } from 'react-redux';
 
 import RestartGameModalContetnt from './restart-game-modal-content/RestartGameModalContetnt';
+import EndGameModalContent from './end-game-modal-content/EndGameModalContent';
 
 import {
   BackDropWrapper,
@@ -32,15 +31,8 @@ const Backdrop = () => {
     },
   };
 
-  const dispatch = useDispatch();
-
-  const closeModal = () => {
-    dispatch(gameActions.toggleModal());
-  };
-
   return (
     <BackDropWrapper
-      onClick={closeModal}
       variants={backdropVariants}
       initial="hidden"
       animate="visible"
@@ -75,7 +67,9 @@ const ModalOverlay = () => {
       animate="visible"
       exit="exit"
     >
-      <ContentWrapper>{!winner && <RestartGameModalContetnt />}</ContentWrapper>
+      <ContentWrapper>
+        {winner ? <EndGameModalContent /> : <RestartGameModalContetnt />}
+      </ContentWrapper>
     </ModalOverlayWrapper>
   );
 };

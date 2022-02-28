@@ -3,13 +3,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { gameActions } from '../../../store/game';
-import { setupActions } from '../../../store/setup';
+import { restartGame } from '../../../store/game';
 
-import {
-  RestartHeader,
-  Button,
-  ButtonWrapper,
-} from './RestartGameModalContetntStyles';
+import { RestartHeader } from './RestartGameModalContetntStyles';
+import { ButtonWrapper, Button } from '../ModalStyles';
 
 const RestartGameModalContetnt = () => {
   const dispatch = useDispatch();
@@ -19,18 +16,16 @@ const RestartGameModalContetnt = () => {
   };
 
   const restartHandler = () => {
-    dispatch(gameActions.toggleModal());
-    dispatch(setupActions.resetGame());
-    dispatch(gameActions.cleanBoard());
+    dispatch(restartGame());
   };
   return (
     <>
       <RestartHeader>restart game?</RestartHeader>
       <ButtonWrapper>
-        <Button type="cancel" onClick={cancelHandler}>
+        <Button type="silver" onClick={cancelHandler}>
           no, cancel
         </Button>
-        <Button type="restart" onClick={restartHandler}>
+        <Button type="yellow" onClick={restartHandler}>
           yes, restart
         </Button>
       </ButtonWrapper>

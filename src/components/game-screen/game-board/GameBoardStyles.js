@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const GameBoardWrapper = styled.div`
+import { motion } from 'framer-motion';
+
+export const GameBoardWrapper = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.9rem;

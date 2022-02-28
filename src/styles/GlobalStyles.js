@@ -56,12 +56,11 @@ body {
 
   background: var(--color-dark-navy);
   color: var(--text-main);
+  overflow:hidden;
   
 }
 
-h1,h2 {
-  font-family: 'Antonio', sans-serif;
-}
+
 
 #root{
   position: relative;
@@ -71,6 +70,8 @@ h1,h2 {
   justify-content: center;
   align-items: center;
   padding: 2.4rem;
+  overflow:hidden;
+  
 }
 
 #overlays{

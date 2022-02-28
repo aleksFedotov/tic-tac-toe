@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const GameScreenWrapper = styled.div`
+export const GameScreenWrapper = styled.section`
   max-width: 46rem;
   width: 100%;
 

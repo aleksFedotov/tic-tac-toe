@@ -30,12 +30,40 @@ const Setup = () => {
     dispatch(setupActions.startNewGame());
   };
 
+  const logoMarkVariants = {
+    initial: { opacity: 0, y: -200 },
+    animate: { opacity: 1, y: 0, transition: { duration: 1 } },
+    exit: { opacity: 0, y: -200, transition: { duration: 1 } },
+  };
+
+  const pvcpuVariants = {
+    initial: { opacity: 0, x: 200 },
+    animate: { opacity: 1, x: 0, transition: { duration: 1 } },
+    exit: { opacity: 0, x: -200, transition: { duration: 1 } },
+  };
+
+  const pvpVariants = {
+    initial: { opacity: 0, x: -200 },
+    animate: { opacity: 1, x: 0, transition: { duration: 1 } },
+    exit: { opacity: 0, x: 200, transition: { duration: 1 } },
+  };
+
   return (
     <SetupWrapper>
-      <LogoWrapper>
+      <LogoWrapper
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={logoMarkVariants}
+      >
         <Logo />
       </LogoWrapper>
-      <MarkPicker>
+      <MarkPicker
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={logoMarkVariants}
+      >
         <Header>pick player 1's mark</Header>
         <MarkWrapper>
           <Mark
@@ -61,10 +89,26 @@ const Setup = () => {
         </MarkWrapper>
         <Info>remember: x goes first</Info>
       </MarkPicker>
-      <ModeButton mode="pvcpu" onClick={selectModeHandler} data-mode="pvcpu">
+      <ModeButton
+        mode="pvcpu"
+        onClick={selectModeHandler}
+        data-mode="pvcpu"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pvcpuVariants}
+      >
         new game (vs cpu)
       </ModeButton>
-      <ModeButton mode="pvp" onClick={selectModeHandler} data-mode="pvp">
+      <ModeButton
+        mode="pvp"
+        onClick={selectModeHandler}
+        data-mode="pvp"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pvpVariants}
+      >
         new game (vs player)
       </ModeButton>
     </SetupWrapper>

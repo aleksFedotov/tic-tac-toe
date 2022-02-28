@@ -4,6 +4,10 @@ const initialState = {
   firstPlayerChoice: 'x',
   gameMode: '',
   gameIsRunning: false,
+  playersChoices: {
+    p1: 'x',
+    p2: 'o',
+  },
 };
 
 const setupSlice = createSlice({
@@ -12,6 +16,10 @@ const setupSlice = createSlice({
   reducers: {
     setFirstPlayerChoice(state, action) {
       state.firstPlayerChoice = action.payload;
+      state.playersChoices = {
+        p1: action.payload,
+        p2: action.payload === 'x' ? 'o' : 'x',
+      };
     },
 
     setGameMode(state, action) {
@@ -25,6 +33,10 @@ const setupSlice = createSlice({
       state.gameIsRunning = false;
       state.gameMode = '';
       state.firstPlayerChoice = 'x';
+      state.playersChoices = {
+        p1: 'x',
+        p2: 'o',
+      };
     },
   },
 });

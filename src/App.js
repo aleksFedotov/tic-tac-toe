@@ -18,8 +18,13 @@ function App() {
   return (
     <Fragment>
       <GlobalStyles />
-      {gameIsRunning ? <GameScreen /> : <Setup />}
-      <AnimatePresence>{isModalOpened && <Modal />}</AnimatePresence>
+
+      <AnimatePresence exitBeforeEnter>
+        {gameIsRunning ? <GameScreen key="screen" /> : <Setup key="setup" />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isModalOpened && <Modal key="modal" />}
+      </AnimatePresence>
     </Fragment>
   );
 }
