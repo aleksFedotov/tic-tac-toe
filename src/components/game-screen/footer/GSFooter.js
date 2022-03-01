@@ -6,10 +6,8 @@ import { FooterWrapper, ScoreCard } from './GSFooterStyles';
 
 const GSFooter = () => {
   const game = useSelector((state) => state.game);
-  const setup = useSelector((state) => state.setup);
 
-  const { score } = game;
-  const { playersChoices, gameMode } = setup;
+  const { score, playersChoices, gameMode } = game;
 
   const footerVariants = {
     initial: { opacity: 0, y: 200 },

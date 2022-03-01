@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { ReactComponent as IconX } from '../../assets/icon-x.svg';
 import { ReactComponent as IconO } from '../../assets/icon-o.svg';
 
 import { useSelector, useDispatch } from 'react-redux';
-
-import { setupActions } from '../../store/setup';
 
 import {
   SetupWrapper,
@@ -18,17 +16,26 @@ import {
   Info,
   ModeButton,
 } from './SetupStyles';
+import { gameActions } from '../../store/game';
 
 const Setup = () => {
-  const setup = useSelector((state) => state.setup);
+  const game = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
-  const { firstPlayerChoice } = setup;
+  const { firstPlayerChoice } = game;
 
-  const selectModeHandler = (e) => {
-    dispatch(setupActions.setGameMode(e.target.dataset.mode));
-    dispatch(setupActions.startNewGame());
+  const selectPvpModeHandler = (e) => {
+    dispatch(gameActions.setGameMode(e.target.dataset.mode));
+    dispatch(gameActions.startNewGame());
   };
+
+  const selectPvcupModeHandler = () => {
+    dispatch(gameActions.toggleModal());
+  };
+
+  useEffect(() => {
+    dispatch(gameActions.resetWinner());
+  }, [dispatch]);
 
   const logoMarkVariants = {
     initial: { opacity: 0, y: -200 },
@@ -70,7 +77,7 @@ const Setup = () => {
             firstPlayerChoice={firstPlayerChoice === 'x'}
             title="x mark"
             onClick={() => {
-              dispatch(setupActions.setFirstPlayerChoice('x'));
+              dispatch(gameActions.setFirstPlayerChoice('x'));
             }}
             aria-checked={firstPlayerChoice === 'x'}
           >
@@ -80,7 +87,7 @@ const Setup = () => {
             firstPlayerChoice={firstPlayerChoice === 'o'}
             title="o mark"
             onClick={() => {
-              dispatch(setupActions.setFirstPlayerChoice('o'));
+              dispatch(gameActions.setFirstPlayerChoice('o'));
             }}
             aria-checked={firstPlayerChoice === 'o'}
           >
@@ -91,7 +98,7 @@ const Setup = () => {
       </MarkPicker>
       <ModeButton
         mode="pvcpu"
-        onClick={selectModeHandler}
+        onClick={selectPvcupModeHandler}
         data-mode="pvcpu"
         initial="initial"
         animate="animate"
@@ -102,7 +109,7 @@ const Setup = () => {
       </ModeButton>
       <ModeButton
         mode="pvp"
-        onClick={selectModeHandler}
+        onClick={selectPvpModeHandler}
         data-mode="pvp"
         initial="initial"
         animate="animate"

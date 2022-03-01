@@ -9,11 +9,9 @@ import Modal from './components/modal/Modal';
 import { AnimatePresence } from 'framer-motion';
 
 function App() {
-  const setup = useSelector((state) => state.setup);
   const game = useSelector((state) => state.game);
 
-  const { gameIsRunning } = setup;
-  const { isModalOpened } = game;
+  const { isModalOpened, gameIsRunning } = game;
 
   return (
     <Fragment>

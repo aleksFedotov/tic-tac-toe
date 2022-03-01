@@ -7,7 +7,7 @@ export const Cell = styled.button`
   width: 100%;
 
   border-radius: 1.5rem;
-  background-color: var(--color-semi-dark-navy);
+  background-color: ${(props) => props.bg};
   box-shadow: 0px 8px var(--box-shadow-color);
   cursor: ${(props) => (props.isMarked ? 'auto' : 'pointer')};
   transition: all 0.3s ease;
@@ -15,6 +15,7 @@ export const Cell = styled.button`
   justify-content: center;
   align-items: center;
   padding: 3.8rem;
+  transition: background-color 0.5s ease 0.5s;
 
   @media (max-width: 600px) {
     padding: 2.4rem;
@@ -29,6 +30,13 @@ export const Cell = styled.button`
 
   .markSelected {
     animation: markAppear 0.5s ease;
+  }
+
+  .winIcon {
+    path {
+      fill: var(--color-semi-dark-navy);
+      transition: all 0.5s ease 0.5s;
+    }
   }
 
   &:hover {

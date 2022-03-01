@@ -21,6 +21,7 @@ const GSHeader = () => {
 
   const restartHandler = () => {
     dispatch(gameActions.toggleModal());
+    dispatch(gameActions.resetWinner());
   };
 
   const headerVariants = {

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import RestartGameModalContetnt from './restart-game-modal-content/RestartGameModalContetnt';
 import EndGameModalContent from './end-game-modal-content/EndGameModalContent';
+import DifficaltyGameModalContent from './difficalty-modal-content/DifficaltyGameModalContent';
 
 import {
   BackDropWrapper,
@@ -44,7 +45,7 @@ const Backdrop = () => {
 const ModalOverlay = () => {
   const game = useSelector((state) => state.game);
 
-  const { winner } = game;
+  const { winner, gameIsRunning } = game;
 
   const modalVariants = {
     hidden: {
@@ -60,6 +61,18 @@ const ModalOverlay = () => {
     },
   };
 
+  let modalContent;
+
+  if (gameIsRunning) {
+    modalContent = winner ? (
+      <EndGameModalContent />
+    ) : (
+      <RestartGameModalContetnt />
+    );
+  } else {
+    modalContent = <DifficaltyGameModalContent />;
+  }
+
   return (
     <ModalOverlayWrapper
       variants={modalVariants}
@@ -67,9 +80,7 @@ const ModalOverlay = () => {
       animate="visible"
       exit="exit"
     >
-      <ContentWrapper>
-        {winner ? <EndGameModalContent /> : <RestartGameModalContetnt />}
-      </ContentWrapper>
+      <ContentWrapper>{modalContent}</ContentWrapper>
     </ModalOverlayWrapper>
   );
 };

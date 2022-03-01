@@ -19,10 +19,8 @@ import { ButtonWrapper, Button } from '../ModalStyles';
 const EndGameModalContent = () => {
   const dispatch = useDispatch();
   const game = useSelector((state) => state.game);
-  const setup = useSelector((state) => state.setup);
 
-  const { winner } = game;
-  const { playersChoices, gameMode } = setup;
+  const { winner, playersChoices, gameMode } = game;
 
   const quitHandler = () => {
     dispatch(quitGame());

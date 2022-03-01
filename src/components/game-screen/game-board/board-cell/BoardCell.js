@@ -9,7 +9,7 @@ import { ReactComponent as IconOOutline } from '../../../../assets/icon-o-outlin
 
 import { Cell } from './BoardCellStyles';
 
-const BoardCell = ({ mark, index }) => {
+const BoardCell = ({ mark, index, isWinCell }) => {
   const game = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
@@ -17,25 +17,33 @@ const BoardCell = ({ mark, index }) => {
 
   const cellClickHandler = () => {
     dispatch(gameActions.updateBoard({ index, turn }));
-    dispatch(gameActions.changeTurn());
   };
+
+  let bgColor = 'var(--color-semi-dark-navy)';
+  if (isWinCell) {
+    bgColor =
+      mark === 'x' ? 'var(--color-light-blue)' : 'var(--color-light-yellow)';
+  }
+
+  let winCellIcon = isWinCell ? 'winIcon' : '';
 
   if (mark === 'x') {
     return (
-      <Cell isMarked={true}>
-        <IconX className="markSelected" />
+      <Cell isMarked={true} bg={bgColor}>
+        <IconX className={`markSelected ${winCellIcon}`} />
       </Cell>
     );
   } else if (mark === 'o') {
     return (
-      <Cell isMarked={true}>
-        <IconO className="markSelected" />
+      <Cell isMarked={true} bg={bgColor}>
+        <IconO className={`markSelected ${winCellIcon}`} />
       </Cell>
     );
   }
 
   return (
     <Cell
+      bg={bgColor}
       isMarked={false}
       onClick={cellClickHandler}
       data-testid={`card-${index}`}

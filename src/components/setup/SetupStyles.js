@@ -32,6 +32,7 @@ export const MarkPicker = styled(motion.div)`
 export const Header = styled.h1`
   font-size: var(--font-size-heading-xs);
   font-weight: var(--font-weight-heading);
+  letter-spacing: var(----letter-spacing-heading-xs);
 `;
 
 export const MarkWrapper = styled.div`

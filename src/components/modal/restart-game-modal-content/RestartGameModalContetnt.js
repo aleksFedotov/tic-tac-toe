@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { gameActions } from '../../../store/game';
-import { restartGame } from '../../../store/game';
+import { quitGame } from '../../../store/game';
 
 import { RestartHeader } from './RestartGameModalContetntStyles';
 import { ButtonWrapper, Button } from '../ModalStyles';
@@ -16,7 +16,7 @@ const RestartGameModalContetnt = () => {
   };
 
   const restartHandler = () => {
-    dispatch(restartGame());
+    dispatch(quitGame());
   };
   return (
     <>
