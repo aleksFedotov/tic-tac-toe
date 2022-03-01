@@ -29,13 +29,13 @@ const BoardCell = ({ mark, index, isWinCell }) => {
 
   if (mark === 'x') {
     return (
-      <Cell isMarked={true} bg={bgColor}>
+      <Cell isMarked={true} bg={bgColor} isWinCell={isWinCell}>
         <IconX className={`markSelected ${winCellIcon}`} />
       </Cell>
     );
   } else if (mark === 'o') {
     return (
-      <Cell isMarked={true} bg={bgColor}>
+      <Cell isMarked={true} bg={bgColor} isWinCell={isWinCell}>
         <IconO className={`markSelected ${winCellIcon}`} />
       </Cell>
     );

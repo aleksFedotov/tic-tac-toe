@@ -15,7 +15,8 @@ export const Cell = styled.button`
   justify-content: center;
   align-items: center;
   padding: 3.8rem;
-  transition: background-color 0.5s ease 0.5s;
+  transition: ${(props) =>
+    props.isWinCell ? 'background-color 0.5s ease 0.5s' : 'none'};
 
   @media (max-width: 600px) {
     padding: 2.4rem;
