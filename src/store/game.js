@@ -125,6 +125,7 @@ const gameSlice = createSlice({
     },
 
     cleanBoard(state) {
+      state.winner = null;
       state.winnerCombo = [];
       state.currentBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       state.turn = 'x';
@@ -133,8 +134,10 @@ const gameSlice = createSlice({
         'gameSettings',
         JSON.stringify({
           ...curretntSettings,
+          winner: state.winner,
           turn: state.turn,
           currentBoard: state.currentBoard,
+          winnerCombo: state.winnerCombo,
         })
       );
     },
@@ -271,7 +274,6 @@ export const quitGame = () => {
   return (dispatch) => {
     dispatch(gameActions.toggleModal());
     dispatch(gameActions.cleanBoard());
-
     dispatch(gameActions.cleanScore());
 
     setTimeout(() => {

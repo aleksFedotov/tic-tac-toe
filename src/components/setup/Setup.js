@@ -79,7 +79,8 @@ const Setup = () => {
             onClick={() => {
               dispatch(gameActions.setFirstPlayerChoice('x'));
             }}
-            aria-checked={firstPlayerChoice === 'x'}
+            aria-pressed={firstPlayerChoice === 'x'}
+            role="button"
           >
             <IconX className="mark" />
           </Mark>
@@ -89,7 +90,8 @@ const Setup = () => {
             onClick={() => {
               dispatch(gameActions.setFirstPlayerChoice('o'));
             }}
-            aria-checked={firstPlayerChoice === 'o'}
+            aria-pressed={firstPlayerChoice === 'o'}
+            role="button"
           >
             <IconO className="mark" />
           </Mark>
@@ -104,6 +106,7 @@ const Setup = () => {
         animate="animate"
         exit="exit"
         variants={pvcpuVariants}
+        role="button"
       >
         new game (vs cpu)
       </ModeButton>
@@ -115,6 +118,7 @@ const Setup = () => {
         animate="animate"
         exit="exit"
         variants={pvpVariants}
+        role="button"
       >
         new game (vs player)
       </ModeButton>
