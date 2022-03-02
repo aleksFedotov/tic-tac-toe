@@ -13,7 +13,7 @@ const BoardCell = ({ mark, index, isWinCell }) => {
   const game = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
-  const { turn } = game;
+  const { turn, isCpuTurn } = game;
 
   const cellClickHandler = () => {
     dispatch(gameActions.updateBoard({ index, turn }));
@@ -45,8 +45,9 @@ const BoardCell = ({ mark, index, isWinCell }) => {
     <Cell
       bg={bgColor}
       isMarked={false}
-      onClick={cellClickHandler}
+      onClick={isCpuTurn ? () => {} : cellClickHandler}
       data-testid={`card-${index}`}
+      data-cpuTurn={isCpuTurn}
     >
       {turn === 'x' ? (
         <IconXOutline className="markHover" />

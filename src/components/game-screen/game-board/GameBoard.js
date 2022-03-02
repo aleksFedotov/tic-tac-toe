@@ -185,6 +185,7 @@ const GameBoard = () => {
         clearTimeout(timerModal);
       };
     } else if (playersChoices.p1 !== turn && gameMode === 'pvcpu') {
+      dispatch(gameActions.toggleCpuTurt());
       const player = playersChoices.p1;
       const cpu = playersChoices.p1 === 'x' ? 'o' : 'x';
       const board = [...currentBoard];
@@ -193,6 +194,7 @@ const GameBoard = () => {
 
       let timer = setTimeout(() => {
         dispatch(gameActions.updateBoard({ turn, index: cpuNextmove }));
+        dispatch(gameActions.toggleCpuTurt());
       }, 500);
 
       return () => {

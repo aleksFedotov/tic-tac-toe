@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const gameSettings = localStorage.getItem('gameSettings');
+const gameSettingsTicTacToe = localStorage.getItem('gameSettingsTicTacToe');
 
-if (!gameSettings) {
+if (!gameSettingsTicTacToe) {
   const settings = {
     firstPlayerChoice: 'x',
     gameMode: '',
@@ -22,8 +22,9 @@ if (!gameSettings) {
     isModalOpened: false,
     winner: null,
     winnerCombo: [],
+    isCpuTurn: false,
   };
-  localStorage.setItem('gameSettings', JSON.stringify(settings));
+  localStorage.setItem('gameSettingsTicTacToe', JSON.stringify(settings));
 }
 
 let firstPlayerChoice = 'x';
@@ -45,19 +46,21 @@ let score = {
 let isModalOpened = false;
 let winner = null;
 let winnerCombo = [];
+let isCpuTurn = false;
 
-if (gameSettings !== null) {
-  firstPlayerChoice = JSON.parse(gameSettings).firstPlayerChoice;
-  gameMode = JSON.parse(gameSettings).gameMode;
-  gameDiffculty = JSON.parse(gameSettings).gameDiffculty;
-  gameIsRunning = JSON.parse(gameSettings).gameIsRunning;
-  playersChoices = JSON.parse(gameSettings).playersChoices;
-  turn = JSON.parse(gameSettings).turn;
-  currentBoard = JSON.parse(gameSettings).currentBoard;
-  score = JSON.parse(gameSettings).score;
-  isModalOpened = JSON.parse(gameSettings).isModalOpened;
-  winner = JSON.parse(gameSettings).winner;
-  winnerCombo = JSON.parse(gameSettings).winnerCombo;
+if (gameSettingsTicTacToe !== null) {
+  firstPlayerChoice = JSON.parse(gameSettingsTicTacToe).firstPlayerChoice;
+  gameMode = JSON.parse(gameSettingsTicTacToe).gameMode;
+  gameDiffculty = JSON.parse(gameSettingsTicTacToe).gameDiffculty;
+  gameIsRunning = JSON.parse(gameSettingsTicTacToe).gameIsRunning;
+  playersChoices = JSON.parse(gameSettingsTicTacToe).playersChoices;
+  turn = JSON.parse(gameSettingsTicTacToe).turn;
+  currentBoard = JSON.parse(gameSettingsTicTacToe).currentBoard;
+  score = JSON.parse(gameSettingsTicTacToe).score;
+  isModalOpened = JSON.parse(gameSettingsTicTacToe).isModalOpened;
+  winner = JSON.parse(gameSettingsTicTacToe).winner;
+  winnerCombo = JSON.parse(gameSettingsTicTacToe).winnerCombo;
+  isCpuTurn = JSON.parse(gameSettingsTicTacToe).isCpuTurn;
 }
 
 const initialState = {
@@ -72,6 +75,7 @@ const initialState = {
   isModalOpened,
   winner,
   winnerCombo,
+  isCpuTurn,
 };
 
 const gameSlice = createSlice({
@@ -86,9 +90,11 @@ const gameSlice = createSlice({
         state.turn = 'x';
       }
 
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           turn: state.turn,
@@ -99,9 +105,11 @@ const gameSlice = createSlice({
     setWinner(state, action) {
       state.winner = action.payload.winner;
       state.winnerCombo = action.payload.winnerCombo;
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           winner: state.winner,
@@ -113,9 +121,11 @@ const gameSlice = createSlice({
     resetWinner(state) {
       state.winner = null;
       state.winnerCombo = [];
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           winner: state.winner,
@@ -125,28 +135,32 @@ const gameSlice = createSlice({
     },
 
     cleanBoard(state) {
-      state.winner = null;
       state.winnerCombo = [];
       state.currentBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       state.turn = 'x';
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      state.isCpuTurn = false;
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
-          winner: state.winner,
           turn: state.turn,
           currentBoard: state.currentBoard,
           winnerCombo: state.winnerCombo,
+          isCpuTurn: state.isCpuTurn,
         })
       );
     },
 
     toggleModal(state) {
       state.isModalOpened = !state.isModalOpened;
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           isModalOpened: state.isModalOpened,
@@ -156,9 +170,11 @@ const gameSlice = createSlice({
 
     updateScore(state, action) {
       state.score[action.payload] += 1;
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           score: state.score,
@@ -172,9 +188,11 @@ const gameSlice = createSlice({
         ties: 0,
         x: 0,
       };
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           score: state.score,
@@ -188,10 +206,12 @@ const gameSlice = createSlice({
         p2: action.payload === 'x' ? 'o' : 'x',
       };
 
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
 
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           firstPlayerChoice: state.firstPlayerChoice,
@@ -203,9 +223,11 @@ const gameSlice = createSlice({
 
     setGameMode(state, action) {
       state.gameMode = action.payload;
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           gameMode: state.gameMode,
@@ -214,9 +236,11 @@ const gameSlice = createSlice({
     },
     startNewGame(state) {
       state.gameIsRunning = true;
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           gameIsRunning: state.gameIsRunning,
@@ -225,9 +249,11 @@ const gameSlice = createSlice({
     },
     setDifficalty(state, action) {
       state.gameDiffculty = action.payload;
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           gameDiffculty: state.gameDiffculty,
@@ -237,9 +263,11 @@ const gameSlice = createSlice({
 
     resetDifficalty(state) {
       state.gameDiffculty = null;
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           gameDiffculty: state.gameDiffculty,
@@ -255,15 +283,30 @@ const gameSlice = createSlice({
         p2: 'o',
       };
 
-      const curretntSettings = JSON.parse(localStorage.getItem('gameSettings'));
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
       localStorage.setItem(
-        'gameSettings',
+        'gameSettingsTicTacToe',
         JSON.stringify({
           ...curretntSettings,
           firstPlayerChoice: state.firstPlayerChoice,
           gameMode: state.gameMode,
           gameIsRunning: state.gameIsRunning,
           playersChoices: state.playersChoices,
+        })
+      );
+    },
+    toggleCpuTurt(state) {
+      state.isCpuTurn = !state.isCpuTurn;
+      const curretntSettings = JSON.parse(
+        localStorage.getItem('gameSettingsTicTacToe')
+      );
+      localStorage.setItem(
+        'gameSettingsTicTacToe',
+        JSON.stringify({
+          ...curretntSettings,
+          isCpuTurn: state.isCpuTurn,
         })
       );
     },

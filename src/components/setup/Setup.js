@@ -80,7 +80,7 @@ const Setup = () => {
               dispatch(gameActions.setFirstPlayerChoice('x'));
             }}
             aria-pressed={firstPlayerChoice === 'x'}
-            role="button"
+            type="button"
           >
             <IconX className="mark" />
           </Mark>
@@ -91,7 +91,7 @@ const Setup = () => {
               dispatch(gameActions.setFirstPlayerChoice('o'));
             }}
             aria-pressed={firstPlayerChoice === 'o'}
-            role="button"
+            type="button"
           >
             <IconO className="mark" />
           </Mark>
@@ -99,26 +99,22 @@ const Setup = () => {
         <Info>remember: x goes first</Info>
       </MarkPicker>
       <ModeButton
-        mode="pvcpu"
         onClick={selectPvcupModeHandler}
         data-mode="pvcpu"
         initial="initial"
         animate="animate"
         exit="exit"
         variants={pvcpuVariants}
-        role="button"
       >
         new game (vs cpu)
       </ModeButton>
       <ModeButton
-        mode="pvp"
         onClick={selectPvpModeHandler}
         data-mode="pvp"
         initial="initial"
         animate="animate"
         exit="exit"
         variants={pvpVariants}
-        role="button"
       >
         new game (vs player)
       </ModeButton>

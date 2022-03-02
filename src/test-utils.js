@@ -3,14 +3,14 @@ import { render as rtlRender } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 // Import your own reducer
-import setupSlice from './store/setup';
+import gameSlice from './store/game';
 
 function render(
   ui,
   {
     preloadedState,
     store = configureStore({
-      reducer: { setup: setupSlice.reducer },
+      reducer: { setup: gameSlice.reducer },
       preloadedState,
     }),
     ...renderOptions

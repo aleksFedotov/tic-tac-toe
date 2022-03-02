@@ -96,12 +96,12 @@ export const ModeButton = styled(motion.button)`
   border-radius: 1.5rem;
   border: none;
   background-color: ${(props) =>
-    props.mode === 'pvp'
+    props['data-mode'] === 'pvp'
       ? 'var(--color-light-blue)'
       : 'var(--color-light-yellow)'};
 
   box-shadow: 0px 8px
-    ${(props) => (props.mode === 'pvp' ? '#118C87' : '#CC8B13')};
+    ${(props) => (props['data-mode'] === 'pvp' ? '#118C87' : '#CC8B13')};
 
   text-transform: uppercase;
   font-size: var(--font-size-heading-s);
@@ -114,7 +114,7 @@ export const ModeButton = styled(motion.button)`
 
   &:hover {
     background-color: ${(props) =>
-      props.mode === 'pvp'
+      props['data-mode'] === 'pvp'
         ? 'var(--color-light-blue-hover)'
         : 'var(--color-light-yellow-hover)'};
   }
@@ -122,7 +122,7 @@ export const ModeButton = styled(motion.button)`
   &:active {
     transform: translateY(0.5rem);
     box-shadow: 0px 4px
-      ${(props) => (props.mode === 'pvp' ? '#118C87' : '#CC8B13')};
+      ${(props) => (props['data-mode'] === 'pvp' ? '#118C87' : '#CC8B13')};
   }
 
   @media (max-width: 600px) {
