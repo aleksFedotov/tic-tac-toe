@@ -11,7 +11,7 @@ describe('Setup component testing', () => {
 
   test('Render Setup component', () => {
     createComponent({
-      setup: {
+      game: {
         firstPlayerChoice: 'x',
         gameMode: '',
         gameIsRunning: false,
@@ -21,7 +21,7 @@ describe('Setup component testing', () => {
 
   test('X is default choice for mark', () => {
     createComponent({
-      setup: {
+      game: {
         firstPlayerChoice: 'x',
         gameMode: '',
         gameIsRunning: false,
@@ -29,13 +29,13 @@ describe('Setup component testing', () => {
     });
     const markX = screen.getByTitle('x mark');
     const markO = screen.getByTitle('o mark');
-    expect(markX).toHaveAttribute('aria-checked', 'true');
-    expect(markO).toHaveAttribute('aria-checked', 'false');
+    expect(markX).toHaveAttribute('aria-pressed', 'true');
+    expect(markO).toHaveAttribute('aria-pressed', 'false');
   });
 
   test('Changing selected mark to O after pressing button', () => {
     createComponent({
-      setup: {
+      game: {
         firstPlayerChoice: 'x',
         gameMode: '',
         gameIsRunning: false,
@@ -43,10 +43,10 @@ describe('Setup component testing', () => {
     });
     const markX = screen.getByTitle('x mark');
     const markO = screen.getByTitle('o mark');
-    expect(markX).toHaveAttribute('aria-checked', 'true');
-    expect(markO).toHaveAttribute('aria-checked', 'false');
+    expect(markX).toHaveAttribute('aria-pressed', 'true');
+    expect(markO).toHaveAttribute('aria-pressed', 'false');
     fireEvent.click(markO);
-    expect(markX).toHaveAttribute('aria-checked', 'false');
-    expect(markO).toHaveAttribute('aria-checked', 'true');
+    expect(markX).toHaveAttribute('aria-pressed', 'false');
+    expect(markO).toHaveAttribute('aria-pressed', 'true');
   });
 });

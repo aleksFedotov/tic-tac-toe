@@ -39,7 +39,7 @@ const GSFooter = () => {
         <h3>X ({textX})</h3>
         <p>{score.x}</p>
       </ScoreCard>
-      <ScoreCard bgColor="silver">
+      <ScoreCard bgColor="silver" data-testid="score-ties">
         <h3>ties</h3>
         <p>{score.ties}</p>
       </ScoreCard>

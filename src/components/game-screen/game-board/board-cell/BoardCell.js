@@ -46,8 +46,8 @@ const BoardCell = ({ mark, index, isWinCell }) => {
       bg={bgColor}
       isMarked={false}
       onClick={isCpuTurn ? () => {} : cellClickHandler}
-      data-testid={`card-${index}`}
-      data-cpuTurn={isCpuTurn}
+      data-testid={`cell-${index}`}
+      data-cputurn={isCpuTurn}
     >
       {turn === 'x' ? (
         <IconXOutline className="markHover" />

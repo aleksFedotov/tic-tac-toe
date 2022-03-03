@@ -46,7 +46,7 @@ const GSHeader = () => {
         )}
         Turn
       </TurnDisplay>
-      <RestartBtn onClick={restartHandler}>
+      <RestartBtn onClick={restartHandler} data-testid="restart-btn">
         <RestartIcon />
       </RestartBtn>
     </HeaderWrapper>

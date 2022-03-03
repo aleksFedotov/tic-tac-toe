@@ -43,18 +43,18 @@ export const Cell = styled.button`
   &:hover {
     .markHover {
       path {
-        stroke-width: ${(props) => (props['data-cpuTurn'] ? '0' : '2')};
+        stroke-width: ${(props) => (props['data-cputurn'] ? '0' : '2')};
       }
     }
   }
 
   &:active {
     box-shadow: ${(props) =>
-      props.isMarked || props['data-cpuTurn']
+      props.isMarked || props['data-cputurn']
         ? '0px 8px var(--box-shadow-color)'
         : '0px 4px var(--box-shadow-color)'};
     transform: ${(props) =>
-      props.isMarked || props['data-cpuTurn'] ? 'none' : 'translateY(0.5rem)'};
+      props.isMarked || props['data-cputurn'] ? 'none' : 'translateY(0.5rem)'};
   }
 
   @keyframes markAppear {

@@ -10,7 +10,7 @@ function render(
   {
     preloadedState,
     store = configureStore({
-      reducer: { setup: gameSlice.reducer },
+      reducer: { game: gameSlice.reducer },
       preloadedState,
     }),
     ...renderOptions

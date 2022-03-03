@@ -6,7 +6,7 @@ import GameBoard from './game-board/GameBoard';
 
 const GameScreen = () => {
   return (
-    <GameScreenWrapper>
+    <GameScreenWrapper data-testid="game-screen">
       <GSHeader />
       <GameBoard />
       <GSFooter />
